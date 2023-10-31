@@ -15,14 +15,14 @@ int main()
 			char ch = '\0';
 			in.get(ch);
 
-			if (ch == '<' && next != '>') 
+			if ((ch == '<' && next != '>') || ( ch == '>' && next == '<'))
 			{
 				valid = false;
 			}
-
+			cout << " " << ch;
 			if (ch == '<')
 			{
-				next = ch;
+				next = ch;  
 			}
 			if (ch == '>')
 			{

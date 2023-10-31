@@ -2,45 +2,46 @@
 #include <fstream>
 using namespace std;
 
-int main() {
-
+int main() 
+{
 	ifstream in("index.html", ios::in);
+	char next = '\0';
+	bool valid = true;
 
-	bool isValid = true;
-	char previousCharacter = '\0';
-	if (in.is_open()) {
-
-		do
+	if (in.is_open())
+	{
+		do	
 		{
+			char ch = '\0';
+			in.get(ch);
 
-			char character = '\0';
-
-			in.get(character);
-
-			if ((character == '>' && previousCharacter != '<') || (character == '<' && previousCharacter == '<')) {
-				isValid = false;
-				break;
+			if (ch == '<' && next != '>') 
+			{
+				valid = false;
 			}
 
-			if (character == '<') {
-				previousCharacter = character;
+			if (ch == '<')
+			{
+				next = ch;
 			}
-
-			if (character == '>') {
-				previousCharacter = character;
+			if (ch == '>')
+			{
+				next = ch;
 			}
-
 		} while (in);
-
-
 		in.close();
 	}
-	else {
-		cout << "File open error!" << endl;
+	else
+	{
+		cout << "Can't open this file\n";
 	}
 
-	if (isValid) cout << "HTML-file is valid." << endl;
-	else cout << "HTML-File isn't valid." << endl;
+	if (valid = true)
+	{
+		cout << "File is valid\n";
+	}
+	else 
+		cout << "File isn't valid\n";
 
 	return 0;
 }
